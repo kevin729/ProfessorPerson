@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Game Generator</title>
+		<link rel="stylesheet" href="styles/styles.css"/>
+		<link rel="stylesheet" href="styles/gg.css"/>
+		<script src="scripts/game/utils.js" type="text/javascript"></script>
+		<script src="scripts/game/assets.js" type="text/javascript"></script>
+		<script src="scripts/game/entities.js" type="text/javascript"></script>
+		<script src="scripts/game/tiles.js" type="text/javascript"></script>
+		<script src="scripts/game/areas.js" type="text/javascript"></script>
+		<script src="scripts/game/game.js" type="text/javascript"></script>
+		
+		<script>
+			window.addEventListener("load", () => {
+				
+				document.getElementById("addTileBtn").addEventListener("click", () => {
+					var tileSelect = document.getElementById("tileSelectImage");
+					
+					if (tileSelect.files.length != 0) {
+						var img = new Image();
+					
+						img.onload = function() {
+							addTile(img, tileSelect.value.replace(/^.*[\\\/]/, '').replace(/\..*/, '')); 
+						};
+						img.src = window.URL.createObjectURL(tileSelect.files[0]);
+					}
+				});
+				
+				document.getElementById("addEntityBtn").addEventListener("click", () => {
+					var entityName = document.getElementById("entityName").value
+					var entityWidth = document.getElementById("entityWidth").value
+					var entityHeight = document.getElementById("entityHeight").value
+					
+					var entitySelect = document.getElementById("entitySelectImage");
+					
+					if (entitySelect.files.length != 0) {
+						var img = new Image();
+					
+						img.onload = function() {
+							addEntity(entityName, entityWidth, entityHeight, img);
+							closeAllPopups();
+						};
+						img.src = window.URL.createObjectURL(entitySelect.files[0]);
+					}
+				});
+				
+				document.getElementById("entityCanvas").addEventListener("mousedown", e => {
+					var index = (Math.floor(e.offsetX / 65)) + (Math.floor(e.offsetY / 65)*5);
+					
+					switch (e.which) {
+						case 1:
+							entityLeft = index;
+							break;
+						case 3:
+							entityRight = index;
+							break;
+					}
+				});
+			});
+			
+			function openTab(event, tabID) {
+				var tabContents = document.getElementsByClassName("ppTabContent");https:
+				[].forEach.call(tabContents, function(t) {
+					t.style.display = "none";
+				});
+					
+				tabs = document.getElementsByClassName("ppTabBtn");
+					
+				[].forEach.call(tabs, function(t) {
+					t.className = t.className.replace(" active", "");
+				});
+					
+				document.getElementById(tabID).style.display = "block";
+				event.currentTarget.className += " active";
+				editor = tabID;
+			}
+			
+			function openPopup(popupID) {
+				document.getElementById(popupID).style.display = "block";
+			}
+			
+			function closePopup(popupID) {
+				document.getElementById(popupID).style.display = "none";
+			}
+			
+			function closeAllPopups() {
+				var popups = document.getElementsByClassName("popupBox");
+				[].forEach.call(popups, function(p) {
+					closePopup(p.id);
+				});	
+			}
+		
+		</script>
+	</head>
+	
+	<body>
+
+		<section class="ppSection">
+			<section>
+				<h1>Game Maker</h1>
+
+				<h2>Game Window</h2>
+				<canvas id="can" width="640" height="480">
+				This browser does not support canvas.
+				</canvas>
+			</section>
+			
+			<section>
+				<h2>Menu</h2>
+				<div class="ppTab">
+					<a href="javascript:void(0)" onclick="openTab(event, 'ppTabTiles')" class="ppTabBtn">Tiles</a>
+					<a href="javascript:void(0)" onclick="openTab(event, 'ppTabEntities')" class="ppTabBtn">Entities</a>
+				</div>
+				<div id="ppTabTiles" class="ppTabContent">
+					<h3>Tiles</h3>
+					<div>
+						<select id="tileLeftDropDown" onchange="javascript:setupTileImages()">
+						</select>
+						
+						<img id="tileLeftImage" width="32px" height="32px">
+						
+						<select id="tileRightDropDown" onchange="javascript:setupTileImages()">
+						</select>
+						
+						<img id="tileRightImage" width="32px" height="32px">
+					</div>
+					
+					<div>
+						<label for="tileImage">choose an image:</label>
+						<input type="file" id="tileSelectImage" name="tileImage" accept="image/gif, image/jpeg, image/png"/>
+					</div>
+					
+					<div>
+						<a href="javascript:void(0)" class="ppButton" id="addTileBtn">Add Tile</a>
+					</div>
+				</div>
+				
+				<div id="ppTabEntities" class="ppTabContent">
+					<h3>Entities</h3>
+					<div>
+						<canvas width="320" height="192" id="entityCanvas" style="border:2px solid #000000;">
+					</div>
+					
+					<div>
+						<label for="entityImage">choose an image:</label>
+						<input type="file" id="entitySelectImage" name="entityImage" accept="image/gif, image/jpeg, image/png"/>
+					</div>
+					
+					<div>
+						<a href="javascript:void(0)" onclick="openPopup('popupEntity')" class="ppButton">New Entity</a>
+					</div>		
+				</div>
+			</section>
+		</section>
+
+		<header>
+			<nav>
+				<ul class="navBar">
+					<li class="active"><a>Projects</a>
+						<ul>
+							<li><a href="earth.html">3D Earth</a></li>
+							<li><a href="env.html">3D Environment</a></li>
+							<li class="active"><a href="gameGenerator.html">Game Generator</a></li>
+						</ul>
+					</li>
+					<li><a href="aboutme.html">About Me</a>
+						<ul>
+							<li><a href="aboutme.html">My Profile</a></li>
+							<li><a href="CV.pdf" target="_blank"> My CV</a></li>
+						</ul>
+					</li>
+					<li><a href="index.html">Home</a></li>
+					<img src="images/me.jpg" alt="Picture of me" style="border-radius: 50%; max-width: 100%; max-height: 100%;">
+				</ul>
+			</nav>
+		</header>
+	</body>
+	
+	<div class="popupBox" id="popupEntity">
+	<div class="popupWrapper">
+		<div class="popupFrame">
+			<a onclick="closePopup('popupEntity')" class="closePopupBtn" href="javascript:void(0)">X</a>
+		</div>
+	
+		<div class="popupContent">
+			<h3>Add Entity</h3>
+			<div>
+				<div>Name:</div>
+				<div>
+					<input type="text" id="entityName" name="entityName" required/>
+				</div>
+			</div>
+					
+			<div>
+				<div>Width:</div>
+				<div>
+					<input type="number" id="entityWidth" name="entityWidth" min="0" max="999999" value=0 required/>
+				</div>
+			</div>
+					
+			<div>
+				<div>Height:</div>
+				<div>
+					<input type="number" id="entityHeight" name="entityHeight" min="0" max="999999" value=0 required/>
+				</div>
+			</div>
+					
+			<div>
+				<div></div>
+				<div>
+					<a href="javascript:void(0)" class="ppButton" id="addEntityBtn">Add Entity</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

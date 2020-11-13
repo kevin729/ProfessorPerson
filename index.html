@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Professor Person</title>
+
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<script>
+			'use strict'
+			window.onload = function() {
+				const subjects = document.getElementById("subjects");
+				subjects.onmousedown = function() {return false;};
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="banner">
+			<pre id="subjects" style="position: fixed;">
+Neural Networks
+
+
+
+
+
+3D Graphics
+			</pre>
+
+			<div style="margin-left:50%; width:50%; height:100%;" align="center"></div>
+		</div>
+
+		<header>
+			<nav>
+				<ul class="navBar">
+					<li><a>Projects</a>
+						<ul>
+							<li><a href="earth.html">3D Earth</a></li>
+							<li><a href="env.html">3D Environment</a></li>
+							<li><a href="gameGenerator.html">Game Generator</a></li>
+						</ul>
+					</li>
+					<li><a href="aboutme.html">About Me</a>
+						<ul>
+							<li><a href="aboutme.html">My Profile</a></li>
+							<li><a href="CV.pdf" target="_blank"> My CV</a></li>
+						</ul>
+					</li>
+					<li class="active"><a href="index.html">Home</a></li>
+					<img src="images/me.jpg" alt="Picture of me" style="border-radius: 50%; max-width: 100%; max-height: 100%;">
+				</ul>
+			</nav>
+		</header>
+
+		
+
+		<section class="text">
+			<h1 style="text-align: center;">Greetings!</h1>
+			
+			<h2 style="text-align: center;">
+				Hello there! My name is Kevin Martin. I am a Computing student at the University of Portsmouth currently in my 	third year. 
+			</h2>
+
+			<br/>
+
+			<h2 style="text-align: center;align-content: center;">
+				This website was created to display all my web based projects. These include two WebGL programs, as well as a JavaScript 2D game making project which is still in progress.
+			</h2>
+			<audio style="text-align: center;" controls>
+				<source src="mad.mp3" type="audio/mpeg">
+				Your browser does not support the audio element.
+			</audio>
+		</section>
+	</body>
+</html>

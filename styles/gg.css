@@ -1,0 +1,30 @@
+.ppSection{display:flex;}
+.ppSection section{float:left; margin-left:10px;}
+section div {margin-bottom:50px;}
+section div:not(.ppTabContent) *{display:inline-block;}
+.ppTabContent{display: none;}
+
+.ppButton{padding: 10px; background-color: purple; color:white; text-decoration: none; cursor: pointer;}
+.ppButton:hover{padding: 10px; background-color: black; color:white; text-decoration: none;}
+.ppButton:active{padding: 10px; background-color: blue; color:white; text-decoration: none;}
+
+.ppTab{padding-bottom:50px;}
+.ppTabBtn{padding: 10px; background-color: purple; float:left; color:white; text-decoration: none; cursor: pointer;}
+.ppTabBtn:hover{padding: 10px; background-color: black; color:white; text-decoration: none;}
+.ppTabBtn.active{padding: 10px; background-color: black; color:white; text-decoration: none;}
+
+.popupBox{display:none; position: fixed; top:0; left:0; background-color: rgba(1,0,0,0.8); width:100%; height:100%; z-index: 1;}
+.popupWrapper{margin:0px auto; background-color: white; width:500px;}
+@media screen and (min-height:500px) {
+	.popupWrapper{margin:70px auto; background-color: white; width:500px;} 
+	.popupContent div *{margin-bottom:10px; display:inline-block}
+}
+.popupFrame{background-color:purple;}
+.popupContent{padding: 10px;}
+
+.popupContent div div{width:200px}
+.popupContent div *{display:inline-block}
+.closePopupBtn{color:white; text-decoration: none; background-color: red;}
+.closePopupBtn:hover{background-color: black;}
+
+canvas{cursor: pointer;}
