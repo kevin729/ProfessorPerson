@@ -69,7 +69,7 @@ ul {
 
 header {
 	width: 100%;
-	height: 70px;
+	height: 100px;
 	position: fixed;
 	top: 0;
 	list-style: none;
@@ -107,7 +107,7 @@ nav ul li:hover {
 
 nav ul li a {
 	display: block;
-	padding: 25px;
+	padding: 50px;
 	color: white;
 	
 	font-size: 100%;
@@ -204,7 +204,7 @@ nav ul li ul li a {
 
 @media screen and (max-width:1000px) {
     nav {
-        width: 1000px;
+        width: 100%;
     }
 
     #banner {
