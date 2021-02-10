@@ -67,13 +67,13 @@ ul {
 
 header {
 	width: 100%;
-	height: 100px;
+	height: 70px;
 	position: fixed;
 	top: 0;
 	list-style: none;
 	background-image: linear-gradient(to right, white, black);
 	float: right;
-	opacity: 0.8;
+	opacity: 1;
 	z-index: 1;
 }
 
@@ -105,9 +105,8 @@ nav ul li:hover {
 
 nav ul li a {
 	display: block;
-	padding: 50px;
+	padding: 30px;
 	color: white;
-	
 	font-size: 100%;
 }
 
@@ -137,7 +136,7 @@ nav ul li ul li a {
 }
 
 #projectIdeas {
-	font-weight: 1px
+	font-weight: 1px;
 	
 }
 
@@ -160,16 +159,28 @@ nav ul li ul li a {
 	background: black;
 	position: relative;
 	width: 100%;
-	height:300px;
+	height:268px;
 	display: inline-block;
 }
 
-#banner div {
+#banner_img1 {
+	position: absolute;
+	left: 0;
+	top:0;
+	width: 176px;
+	height: 268px;
+	background-repeat: no-repeat;
+	background: url(../images/meT.png);
+	z-index: 2;
+	opacity: 2;
+}
+
+#banner_img2 {
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0);
 	width: 600px;
-	height: 300px;
+	height: 268px;
 	background: url(../images/earth.gif);
 	background-repeat: no-repeat;
 	animation-name:imageChange;
@@ -217,5 +228,4 @@ nav ul li ul li a {
 		width: 85%;
 		font-size: 35px;
 	}
-
 }
