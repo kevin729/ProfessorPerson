@@ -81,7 +81,7 @@ function start() {
 	tree = new Entity(25, 0, 20, 0, 0, 0, 1, new TexturedModel(getModel("tree"), getTexture("treeTexture")), 1, "tree", true);
 	char = new Entity(200, 0, 200, 0, 0, 0, 5, new TexturedModel(getModel("player"), getTexture("characterTexture")), 0, "char", true);
 
-	entities.push(player);
+	
 	entities.push(new Entity(100, 0, 70, 0, 0, 0, 2, new TexturedModel(getModel("ramp"), getTexture("rockTexture")), 0, "ramp", false));
 	entities.push(new Entity(200, 0, 200, 0, 0, 0, 10, new TexturedModel(getModel("house"), getTexture("rockTexture")), 0, "house", true));
 
