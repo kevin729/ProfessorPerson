@@ -1,0 +1,789 @@
+html {
+  height:100%;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color:purple;
+  height:100%;
+}
+
+#contactSection {
+  text-align: center;
+  padding: 0 20% 0 20%;
+}
+
+.cvpdf {
+  width:800px;
+  height:300px;
+}
+
+.me {
+  width:200px;
+  height:auto;
+  border-radius: 50%;
+}
+
+h4 {
+  vertical-align: middle;
+  text-align: left;
+  color:white;
+  font-size:25px;
+}
+
+.projectWrapper {
+  width: 100%;
+  height:200px;
+}
+
+.CNNImg {
+  width: 200px;
+  height:200px;
+}
+
+.CNNCaption {
+  text-align: justify;
+  text-decoration: dotted;
+  width:50%;
+  height:200px;
+  float:left;
+  border-style:solid;
+  padding:5% 0 0 0;
+}
+
+.scannerImg {
+  width: 200px;
+  height:300px;
+}
+
+.scannerCaption {
+  width:50%;
+  height:300px;
+  float:left;
+  border-style:solid;
+  padding:10% 0 0 0;
+}
+
+.wrapper {
+  width: 100%;
+  height:80%;
+}
+
+.main {
+  height:100%;
+}
+
+.logwrapper {
+  height:100%;
+}
+
+#logform {
+  height:80%;
+}
+
+.formdiv {
+  height:20%;
+  font-weight: 900;
+}
+
+.mainwrapper {
+  width:100%;
+  height: 90%;
+}
+
+.sectionwrappaer {
+  padding: 10px;
+  border-radius: 5%;
+  border-style: solid;
+  border-color: white;
+  vertical-align: top;
+  background-color: #3b3b3b;
+  display: inline-block;
+  width:100%;
+  height:100%;
+}
+
+section {
+  width:100%;
+  height:100%;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 900;
+  color:white;
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 900;
+  color:white;
+}
+
+.logtextwrapper {
+  width: 100%;
+  height:60%;
+}
+
+.logtitlewrapper {
+  height:100px;
+}
+
+#logTitle {
+  width: 300px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.ui-menu {
+  padding:0;
+  margin:0;
+}
+
+.ui-menu-item {
+  display:block;
+  padding:5px;
+  background-color: black;
+  color:white;
+  border-style: solid;
+  border-color: purple;
+  display: block;
+  width:300px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#logText {
+  resize: none;
+  width: 100%;
+  height:100%;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.savelogwrapper {
+  margin-top:20px;
+  height:50px;
+}
+
+.PPbutton {
+  padding: 5px;
+  color:white;
+  background-color:purple;
+  border-style:solid;
+  border-radius:20%;
+}
+
+#logowrapper {
+  width:100px;
+  height:100px;
+}
+
+.logo {
+  width:auto;
+  height:50px;
+  position: relative;
+  z-index: 2;
+}
+
+.head {
+  position: static;
+  background-color: black;
+  width:100%;
+  height:120;
+}
+
+.navbar-toggler {
+  position: relative;
+  z-index: 2;
+}
+
+.lefthead {
+  display: flex;
+  align-items: middle;
+  width:50px;
+}
+
+.menuwrapper {
+  display: flex;
+  align-items: center;
+  margin-left:100px;
+  width:200px;
+  height:100px;
+  vertical-align: middle;
+}
+
+.menulist {
+
+  float:left;
+  width:100px;
+}
+
+.menu {
+  position: relative;
+  z-index: 2;
+  vertical-align: middle;
+  margin-left:20px;
+  display: inline-block;
+}
+
+#canvaswrapper {
+  width:100%;
+  height:100%;
+  text-align: center;
+}
+
+#canvas {
+  width:auto;
+  height:100px;
+  text-align: center;
+}
+
+.banner {
+  position: relative;
+  z-index: 2;
+  height:100px;
+  width:auto;
+}
+
+.foot {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height:70px;
+  background-color: antiquewhite;
+  color:white;
+  color:black;
+  vertical-align: middle;
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
+@media screen and (max-width:1550px) {
+  .projectWrapper {
+    width: 100%;
+    height:150px;
+  }
+
+  .CNNImg {
+    width: 150px;
+    height:150px;
+  }
+
+  .CNNCaption {
+    width:50%;
+    height:150px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 0;
+  }
+
+  .scannerImg {
+    width: 100px;
+    height:150px;
+  }
+
+  .scannerCaption {
+    width:50%;
+    height:150px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 0;
+  }
+}
+
+@media screen and (max-width:1300px) {
+  .cvpdf {
+    width:500px;
+    height:300px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .projectWrapper {
+    width: 100%;
+    height:150px;
+  }
+
+  .CNNImg {
+    width: 100px;
+    height:100px;
+  }
+
+  .CNNCaption {
+    width:50%;
+    height:100px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 0;
+  }
+
+  .scannerImg {
+    width: 100px;
+    height:150px;
+  }
+
+  .scannerCaption {
+    width:50%;
+    height:100px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 0;
+  }
+
+  .sectionwrappaer {
+    border-radius: 5%;
+    vertical-align: top;
+    background-color: #3b3b3b;
+    display: inline-block;
+    width:100%;
+    height:100%;
+  }
+
+  .foot {
+    font-size: 10px;
+    height:10px;
+  }
+
+  .mainwrapper {
+    margin-top:50px;
+    width:100%;
+    height: 90%;
+  }
+
+  .head {
+    width:100%;
+    height:60px;
+  }
+
+  nav {
+    height:60px;
+    position: static;
+    background-color: black;
+  }
+
+  .banner {
+    position: relative;
+    z-index: 2;
+    height:50px;
+    width:auto;
+  }
+
+  #logowrapper {
+    width:50px;
+    height:50px;
+  }
+
+  #canvas {
+    width:auto;
+    height:50px;
+    text-align: center;
+  }
+
+  .menuwrapper {
+    display: flex;
+    align-items: center;
+    margin-left:100px;
+    width:200px;
+    height:50px;
+    vertical-align: middle;
+  }
+}
+
+@media screen and (max-width:1200px) {
+  h4 {
+    vertical-align: middle;
+    text-align: left;
+    color:white;
+    font-size:13px;
+  }
+
+  .projectWrapper {
+    width: 100%;
+    height:100px;
+  }
+
+  .CNNImg {
+    width: 80px;
+    height:80px;
+  }
+
+  .CNNCaption {
+    width:50%;
+    height:80px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 5%;
+  }
+
+  .scannerImg {
+    width: 50px;
+    height:100px;
+  }
+
+  .scannerCaption {
+    width:50%;
+    height:80px;
+    float:left;
+    border-style:solid;
+    padding:2% 0 0 5%;
+  }
+
+  .sectionwrappaer {
+    border-radius: 5%;
+    vertical-align: top;
+    background-color: #3b3b3b;
+    display: inline-block;
+    width:100%;
+    height:100%;
+  }
+
+  .foot {
+    font-size: 10px;
+    height:10px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  nav {
+    height:60px;
+    position: static;
+    background-color: black;
+  }
+
+  .wrapper {
+    margin-top: 5px;
+  }
+
+  .mainwrapper {
+    margin-top:50px;
+    width:100%;
+    height: 90%;
+  }
+
+}
+
+@media screen and (max-width:1100px) {
+  .cvpdf {
+    width:400px;
+    height:200px;
+  }
+
+  .mainwrapper {
+    margin-top:20px;
+    width:100%;
+    height: 90%;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .foot {
+    font-size: 5px;
+    height:20px;
+  }
+
+  .logtitlewrapper {
+    height:70px;
+  }
+
+  .me {
+    text-align: center;
+    width:150px;
+    height:auto;
+  }
+}
+
+@media screen and (max-width:950px) {
+  .cvpdf {
+    width:300px;
+    height:100px;
+  }
+
+  h3 {
+    font-size: 10px;
+  }
+
+  .me {
+    text-align: center;
+    width:100px;
+    height:auto;
+  }
+
+  .mainwrapper {
+    margin-top:20px;
+    width:100%;
+    height: 90%;
+  }
+
+  .foot {
+    font-size: 5px;
+    height:10px;
+  }
+
+  .head {
+    width:100%;
+    height:60px;
+  }
+
+  .banner {
+    position: relative;
+    z-index: 2;
+    height:50px;
+    width:auto;
+  }
+
+  nav {
+    height:60px;
+    position: static;
+    background-color: black;
+  }
+
+  .wrapper {
+    margin-top: 50px;
+  }
+
+  .menulist {
+    float:left;
+    width:100px;
+  }
+
+  .logtitlewrapper {
+    height:50px;
+  }
+}
+
+@media screen and (max-width:600px) {
+  h4 {
+    font-size: 10px;
+  }
+
+  .projectWrapper {
+    width: 100%;
+    height:80px;
+  }
+
+  .CNNImg {
+    width: 60px;
+    height:60px;
+  }
+
+  .CNNCaption {
+    width:50%;
+    height:60px;
+    float:left;
+    border-style:solid;
+    padding:1% 0 0 5%;
+  }
+
+  .scannerImg {
+    width: 50px;
+    height:80px;
+  }
+
+  .scannerCaption {
+    width:50%;
+    height:80px;
+    float:left;
+    border-style:solid;
+    padding:1% 0 0 5%;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .foot {
+    font-size: 5px;
+    height:10px;
+  }
+
+  .head {
+    width:100%;
+    height:10px;
+    background-color: blue;
+  }
+
+  nav {
+    height:50px;
+    position: static;
+    background-color: black;
+  }
+
+  .banner {
+    position: absolute;
+    top:0;
+    right:0;
+    z-index: 2;
+    height:25px;
+    width:auto;
+  }
+
+  .wrapper {
+    margin-top: 50px;
+  }
+
+  .logo {
+    display:none;
+  }
+
+  #logowrapper {
+    display:none;
+  }
+
+  .menuwrapper {
+    width:200px;
+    height:10px;
+    float:left;
+  }
+
+  .menulist {
+    position: absolute;
+    top:2px;
+    left:0;
+    float:left;
+    width:200px;
+    height:20px;
+  }
+
+  .nav-item {
+    display: inline-block;
+    width:30px;
+    height:20px;
+  }
+
+  .menu {
+    text-align: center;
+    border-radius: 0;
+    width:50px;
+    height:20px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding:2px;
+    font-size: 10px;
+  }
+
+  .righthead {
+    margin:0;
+    padding:0;
+    vertical-align: middle;
+  }
+
+  .me {
+    width:50px;
+    height: auto;
+  }
+
+  .sectionwrappaer {
+
+    border-radius: 5%;
+    border-style: solid;
+    border-color: white;
+    vertical-align: top;
+    background-color: #3b3b3b;
+    display: inline-block;
+    width:100%;
+    height:100%;
+  }
+
+  #contactSection {
+    padding: 20px 5px 20px 5px;
+  }
+
+  @media screen and (max-width:300px) {
+    .sectionwrappaer {
+      width:500px;
+      height:500px;
+    }
+
+    h4 {
+      vertical-align: middle;
+      text-align: left;
+      color:white;
+      font-size:13px;
+    }
+
+    .projectWrapper {
+      width: 100%;
+      height:100px;
+    }
+
+    .CNNImg {
+      width: 30px;
+      height:30px;
+    }
+
+    .CNNCaption {
+      width:50%;
+      height:80px;
+      float:left;
+      border-style:solid;
+      padding:2% 0 0 5%;
+    }
+
+    .scannerImg {
+      width: 30px;
+      height:50px;
+    }
+
+    .scannerCaption {
+      width:50%;
+      height:80px;
+      float:left;
+      border-style:solid;
+      padding:2% 0 0 5%;
+    }
+  }
+}
+
+@media screen and (max-height:600px) {
+  h4 {
+    font-size: 7px;
+  }
+
+  .projectWrapper {
+    width: 100%;
+    height:40px;
+  }
+
+  .CNNImg {
+    width: 40px;
+    height:40px;
+  }
+
+  .CNNCaption {
+    width:50%;
+    height:40px;
+    float:left;
+    border-style:solid;
+    padding:1% 0 0 5%;
+  }
+
+  .scannerImg {
+    width: 40px;
+    height:50px;
+  }
+
+  .scannerCaption {
+    width:50%;
+    height:50px;
+    float:left;
+    border-style:solid;
+    padding:1% 0 0 5%;
+  }
+}
