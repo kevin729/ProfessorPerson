@@ -1,4 +1,4 @@
-var ppurl = "http://localhost:8080/"
+var ppurl = "https://www.professorperson.app/"
 var app = angular.module('app', [
     'ngRoute'
 ])
