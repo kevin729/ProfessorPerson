@@ -41,9 +41,7 @@ public class APIController {
 
     @PostMapping("/api/logbytitle")
     public Log logByTitle(@RequestBody ViewLog data) throws UnsupportedEncodingException {
-        System.out.println("View Log: " + data.getTitle());
         String json = connection.get("https://www.lukemind.com/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1");
-        System.out.println("JSON: " + json);
         Log log = new Gson().fromJson(json, Log.class);
         return log;
     }
