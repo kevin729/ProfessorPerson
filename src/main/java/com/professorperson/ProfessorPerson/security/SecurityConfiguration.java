@@ -18,15 +18,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration {
-
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("Kevin").password(encoder.encode("Testing")).roles("ADMIN").build());
-        return manager;
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -35,12 +27,14 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf()
-                .disable()
+        http.csrf().disable().cors().disable()
                 .authorizeRequests(authorizeRequest ->
-                        authorizeRequest
-                                .antMatchers("/", "/log", "/contact", "/api/**", "/js/**", "/css/**", "/docs/**", "/images/**", "/*.html").permitAll()
-                                .anyRequest().authenticated())
+                    authorizeRequest
+                            .antMatchers("/**").permitAll()
+                            .anyRequest().authenticated()
+                )
+                .formLogin().permitAll()
+                .and()
                 .headers().frameOptions().sameOrigin();
 
         return http.build();

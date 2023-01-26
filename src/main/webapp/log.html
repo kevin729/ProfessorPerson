@@ -9,13 +9,20 @@
             <textarea name="text" id="logText" ng-model="log.logText" disabled></textarea>
         </div>
 
-<!--        <div class="formdiv savelogwrapper">-->
-<!--            <a class="PPbutton" onclick="save()">Save</a>-->
-<!--        </div>-->
+        <div class="formdiv" style="margin:50px">
+            <a ng-click="login()" href="javascript:void(0)" class="PPbutton" >Login</a>
+        </div>
 
         <input id="userID" name="userID" type="hidden" value="1"/>
         <input name="id" type="hidden" ng-model="log.id"/>
         <input name="dateModified" type="hidden" value="-1"/>
 
+
     </form>
 </div>
+
+<script>
+    function edit() {
+        window.location = "/log/edit"
+    }
+</script>
