@@ -1,4 +1,4 @@
-var ppurl = "https://www.professorperson.app/"
+var ppurl = "http://localhost:8081/"
 var app = angular.module('app', [
     'ngRoute'
 ])
@@ -70,7 +70,7 @@ app.controller("logController", function($scope, $http) {
     }
 
     $scope.signIn = function() {
-        $http.post("https://www.lukemind.com/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+        $http.post("http://localhost:8080/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
 
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
             $(".ui-dialog-content").dialog("close")

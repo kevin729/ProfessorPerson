@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LukeMindRestConnection implements RestConnection {
-    private StringBuilder bearerAuthentication;
+    private StringBuilder bearerAuthentication = new StringBuilder();
 
     @Override
     public void authenticate(String bearerAuthentication) {

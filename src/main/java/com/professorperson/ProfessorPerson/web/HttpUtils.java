@@ -14,7 +14,6 @@ public class HttpUtils {
             con.setRequestMethod(method);
 
             con.setRequestProperty("Authorization", bearerAuthentication.toString());
-            bearerAuthentication.setLength(0);
 
             if (contentType.equals("text/plain")) {
                 //data type
@@ -62,6 +61,7 @@ public class HttpUtils {
             e.printStackTrace();
         }
 
+        bearerAuthentication.setLength(0);
         return "";
     }
 }

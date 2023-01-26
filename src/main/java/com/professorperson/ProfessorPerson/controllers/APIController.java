@@ -26,21 +26,21 @@ public class APIController {
 
     @GetMapping("api/logtitles")
     public List<String> logTitles() {
-        String json = connection.get("https://www.lukemind.com/profile/get_log_titles/1");
+        String json = connection.get("http://localhost:8080/profile/get_log_titles/1");
         List<String> logs = new Gson().fromJson(json, List.class);
         return logs;
     }
 
     @GetMapping("/api/logs")
     public List<Log> logs() {
-        String json = connection.get("https://www.lukemind.com/profile/get_logs/1");
+        String json = connection.get("https://localhost:8080/profile/get_logs/1");
         List<Log> logs = new Gson().fromJson(json, List.class);
         return logs;
     }
 
     @PostMapping("/api/logbytitle")
     public Log logByTitle(@RequestBody ViewLog data) throws UnsupportedEncodingException {
-        String json = connection.get("https://www.lukemind.com/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1");
+        String json = connection.get("https://localhost:8080/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1");
         Log log = new Gson().fromJson(json, Log.class);
         return log;
     }
