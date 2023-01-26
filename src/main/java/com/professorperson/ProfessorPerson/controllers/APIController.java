@@ -32,7 +32,7 @@ public class APIController {
             return null;
         }
 
-        String json = connection.get("http://localhost:8080/profile/get_log_titles/1", token.get());
+        String json = connection.get("https://www.lukemind.com/profile/get_log_titles/1", token.get());
         List<String> logs = new Gson().fromJson(json, List.class);
         return logs;
     }
@@ -45,7 +45,7 @@ public class APIController {
             return null;
         }
 
-        String json = connection.get("http://localhost:8080/profile/get_logs/1", token.get());
+        String json = connection.get("https://www.lukemind.com/profile/get_logs/1", token.get());
         List<Log> logs = new Gson().fromJson(json, List.class);
         return logs;
     }
@@ -58,7 +58,7 @@ public class APIController {
             return null;
         }
 
-        String json = connection.get("http://localhost:8080/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1", token.get());
+        String json = connection.get("https://www.lukemind.com/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1", token.get());
         Log log = new Gson().fromJson(json, Log.class);
         return log;
     }
@@ -72,7 +72,7 @@ public class APIController {
         }
 
         String logRequest = new Gson().toJson(log);
-        connection.put("http://localhost:8080/profile/modify_log", logRequest, token.get());
+        connection.put("https://www.lukemind.com/profile/modify_log", logRequest, token.get());
     }
 
     @GetMapping("/api/csrf")
