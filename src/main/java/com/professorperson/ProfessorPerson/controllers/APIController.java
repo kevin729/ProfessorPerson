@@ -28,51 +28,55 @@ public class APIController {
     public List<String> logTitles(HttpServletRequest request) {
         Optional<String> token = extractToken(request);
 
-        if (!token.isPresent()) {
-            return null;
+        if (token.isPresent()) {
+            String json = connection.get("https://www.lukemind.com/profile/get_log_titles/1", token.get());
+            List<String> logs = new Gson().fromJson(json, List.class);
+            return logs;
+        } else {
+            String json = connection.get("https://www.lukemind.com/api/get_log_titles/1", "");
+            List<String> logs = new Gson().fromJson(json, List.class);
+            return logs;
         }
-
-        String json = connection.get("https://www.lukemind.com/profile/get_log_titles/1", token.get());
-        List<String> logs = new Gson().fromJson(json, List.class);
-        return logs;
     }
 
     @GetMapping("/api/logs")
     public List<Log> logs(HttpServletRequest request) {
         Optional<String> token = extractToken(request);
 
-        if (!token.isPresent()) {
-            return null;
+        if (token.isPresent()) {
+            String json = connection.get("https://www.lukemind.com/profile/get_logs/1", token.get());
+            List<Log> logs = new Gson().fromJson(json, List.class);
+            return logs;
+        } else {
+            String json = connection.get("https://www.lukemind.com/api/get_logs/1", "");
+            List<Log> logs = new Gson().fromJson(json, List.class);
+            return logs;
         }
-
-        String json = connection.get("https://www.lukemind.com/profile/get_logs/1", token.get());
-        List<Log> logs = new Gson().fromJson(json, List.class);
-        return logs;
     }
 
     @PostMapping("/api/logbytitle")
     public Log logByTitle(@RequestBody ViewLog data, HttpServletRequest request) throws UnsupportedEncodingException {
         Optional<String> token = extractToken(request);
 
-        if (!token.isPresent()) {
-            return null;
+        if (token.isPresent()) {
+            String json = connection.get("https://www.lukemind.com/profile/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1", token.get());
+            Log log = new Gson().fromJson(json, Log.class);
+            return log;
+        } else {
+            String json = connection.get("https://www.lukemind.com/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1", "");
+            Log log = new Gson().fromJson(json, Log.class);
+            return log;
         }
-
-        String json = connection.get("https://www.lukemind.com/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/1", token.get());
-        Log log = new Gson().fromJson(json, Log.class);
-        return log;
     }
 
     @PutMapping("/api/log")
     public void postLog(@RequestBody Log log, HttpServletRequest request) {
         Optional<String> token = extractToken(request);
 
-        if (!token.isPresent()) {
-            return;
+        if (token.isPresent()) {
+            String logRequest = new Gson().toJson(log);
+            connection.put("https://www.lukemind.com/profile/modify_log", logRequest, token.get());
         }
-
-        String logRequest = new Gson().toJson(log);
-        connection.put("https://www.lukemind.com/profile/modify_log", logRequest, token.get());
     }
 
     @GetMapping("/api/csrf")
