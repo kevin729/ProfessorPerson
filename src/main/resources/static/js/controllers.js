@@ -30,7 +30,7 @@ app.run(function($http) {
 app.controller("homeController", function($scope) {})
 app.controller("contactController", function($scope) {})
 
-var edit = false
+var editLog = false
 app.controller("logController", function($scope, $http) {
     $http.get(ppurl+"api/logs/").then((response) => {
         $scope.logs = response.data
@@ -86,8 +86,8 @@ app.controller("logController", function($scope, $http) {
     }
 
     $scope.$watch("edit", (n, o) => {
-        if (n || (!n && edit)) {
-            edit = true
+        if (n === true || editLog) {
+            editLog = true
             $("#logText").removeAttr("disabled")
         } else {
             $("#logText").attr("disabled", "")
