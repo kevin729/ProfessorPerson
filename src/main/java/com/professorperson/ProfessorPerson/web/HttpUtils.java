@@ -7,11 +7,13 @@ import java.net.URL;
 
 public class HttpUtils {
 
-    public static String restService(String _url, String method, String contentType, String data) {
+    public static String restService(String _url, String method, String contentType, String data, String bearerAuthentication) {
         try {
             URL url = new URL(_url);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(method);
+
+            con.setRequestProperty("Authorization", bearerAuthentication);
 
             if (contentType.equals("text/plain")) {
                 //data type

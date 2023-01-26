@@ -18,6 +18,11 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/log/edit")
+    public String editLog() {
+        return "index";
+    }
+
     @GetMapping("/contact")
     public String contact() {
         return "index";
