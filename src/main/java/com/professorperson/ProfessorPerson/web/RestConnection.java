@@ -1,9 +1,8 @@
 package com.professorperson.ProfessorPerson.web;
 
 public interface RestConnection {
-    void authenticate(String token);
-    String get(String url);
-    String post(String url, String data);
-    String put(String url, String data);
-    String delete(String url, String data);
+    String get(String url, String bearer);
+    String post(String url, String data, String bearer);
+    String put(String url, String data, String bearer);
+    String delete(String url, String data, String bearer);
 }
