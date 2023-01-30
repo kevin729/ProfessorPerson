@@ -9,6 +9,11 @@ body {
   height:100%;
 }
 
+#welcomeSection {
+    text-align: center;
+
+}
+
 #contactSection {
   text-align: center;
   padding: 0 20% 0 20%;
@@ -48,8 +53,8 @@ h4 {
 }
 
 .CNNImg {
-  width: 500px;
-  height:500px;
+  width: 300px;
+  height:300px;
 }
 
 .CNNCaption {
