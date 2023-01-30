@@ -21,10 +21,7 @@
 //
 //    @Override
 //    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-//        Optional.ofNullable(request.getHeader("Authorization")).ifPresent(header -> {
-//            connection.authenticate(header);
-//        });
-//
+//        connection.authenticate(request.getHeader("Authorization"));
 //        filterChain.doFilter(request, response);
 //    }
 //}

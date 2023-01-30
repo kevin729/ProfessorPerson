@@ -48,7 +48,7 @@ var interval;
 function loop(callback) {
   if (!running) {
     interval = setInterval(() => {
-      gl.clearColor(0, 0, 0, 1)
+      gl.clearColor(0.5, 0.5, 0.5, 1)
       gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 
       render()
