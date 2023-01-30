@@ -5,7 +5,7 @@ html {
 body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-color:purple;
+  background-color: #3b3b3b;
   height:100%;
 }
 
@@ -17,6 +17,16 @@ body {
 .cvpdf {
   width:800px;
   height:300px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight 900;
+    color:white;
+}
+
+h5 {
+    color:white;
 }
 
 .me {
@@ -38,8 +48,8 @@ h4 {
 }
 
 .CNNImg {
-  width: 200px;
-  height:200px;
+  width: 500px;
+  height:500px;
 }
 
 .CNNCaption {
@@ -48,7 +58,6 @@ h4 {
   width:50%;
   height:200px;
   float:left;
-  border-style:solid;
   padding:5% 0 0 0;
 }
 
@@ -61,7 +70,6 @@ h4 {
   width:50%;
   height:300px;
   float:left;
-  border-style:solid;
   padding:10% 0 0 0;
 }
 
@@ -94,9 +102,7 @@ h4 {
 
 .sectionwrappaer {
   padding: 10px;
-  border-radius: 5%;
-  border-style: solid;
-  border-color: white;
+  background-color:black;
   vertical-align: top;
   background-color: #3b3b3b;
   display: inline-block;
@@ -146,7 +152,6 @@ h3 {
   padding:5px;
   background-color: black;
   color:white;
-  border-style: solid;
   border-color: purple;
   display: block;
   width:300px;
@@ -189,9 +194,13 @@ h3 {
 
 .head {
   position: static;
-  background-color: black;
+  background-color: grey;
   width:100%;
-  height:120;
+  height:120px;
+}
+
+nav {
+    margin:0;
 }
 
 .navbar-toggler {
@@ -243,9 +252,14 @@ h3 {
 .banner {
   position: relative;
   z-index: 2;
-  height:100px;
-  width:auto;
+  height:auto;
+  width:100%;
 }
+
+.professorperson {
+    width:100%;
+    height:auto;
+  }
 
 .foot {
   position: fixed;
@@ -271,8 +285,8 @@ h3 {
   }
 
   .CNNImg {
-    width: 150px;
-    height:150px;
+    width: 300px;
+    height:300px;
   }
 
   .CNNCaption {
@@ -313,8 +327,8 @@ h3 {
   }
 
   .CNNImg {
-    width: 100px;
-    height:100px;
+    width: 300px;
+    height:300px;
   }
 
   .CNNCaption {
@@ -361,12 +375,12 @@ h3 {
   .head {
     width:100%;
     height:60px;
+    background-color:grey
   }
 
   nav {
     height:60px;
     position: static;
-    background-color: black;
   }
 
   .banner {
@@ -411,8 +425,8 @@ h3 {
   }
 
   .CNNImg {
-    width: 80px;
-    height:80px;
+    width: 300px;
+    height:300px;
   }
 
   .CNNCaption {
@@ -457,7 +471,7 @@ h3 {
   nav {
     height:60px;
     position: static;
-    background-color: black;
+
   }
 
   .wrapper {
@@ -546,7 +560,6 @@ h3 {
   nav {
     height:60px;
     position: static;
-    background-color: black;
   }
 
   .wrapper {
@@ -574,15 +587,14 @@ h3 {
   }
 
   .CNNImg {
-    width: 60px;
-    height:60px;
+    width: 300px;
+    height:300px;
   }
 
   .CNNCaption {
     width:50%;
     height:60px;
     float:left;
-    border-style:solid;
     padding:1% 0 0 5%;
   }
 
@@ -595,7 +607,6 @@ h3 {
     width:50%;
     height:80px;
     float:left;
-    border-style:solid;
     padding:1% 0 0 5%;
   }
 
@@ -614,14 +625,12 @@ h3 {
 
   .head {
     width:100%;
-    height:10px;
-    background-color: blue;
+    height:60px;
   }
 
   nav {
-    height:50px;
+    height:60px;
     position: static;
-    background-color: black;
   }
 
   .banner {
@@ -692,8 +701,6 @@ h3 {
   .sectionwrappaer {
 
     border-radius: 5%;
-    border-style: solid;
-    border-color: white;
     vertical-align: top;
     background-color: #3b3b3b;
     display: inline-block;
@@ -724,15 +731,14 @@ h3 {
     }
 
     .CNNImg {
-      width: 30px;
-      height:30px;
+      width: 300px;
+      height:300px;
     }
 
     .CNNCaption {
       width:50%;
       height:80px;
       float:left;
-      border-style:solid;
       padding:2% 0 0 5%;
     }
 
@@ -745,7 +751,6 @@ h3 {
       width:50%;
       height:80px;
       float:left;
-      border-style:solid;
       padding:2% 0 0 5%;
     }
   }
@@ -762,15 +767,14 @@ h3 {
   }
 
   .CNNImg {
-    width: 40px;
-    height:40px;
+    width: 200px;
+    height:200px;
   }
 
   .CNNCaption {
     width:50%;
     height:40px;
     float:left;
-    border-style:solid;
     padding:1% 0 0 5%;
   }
 
@@ -783,7 +787,6 @@ h3 {
     width:50%;
     height:50px;
     float:left;
-    border-style:solid;
     padding:1% 0 0 5%;
   }
 }
