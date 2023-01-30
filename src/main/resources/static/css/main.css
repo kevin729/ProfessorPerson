@@ -11,7 +11,6 @@ body {
 
 #welcomeSection {
     text-align: center;
-
 }
 
 #contactSection {
@@ -30,8 +29,9 @@ h1 {
     color:white;
 }
 
-h5 {
+.projectDescription {
     color:white;
+    font-size:16px;
 }
 
 .me {
@@ -53,8 +53,13 @@ h4 {
 }
 
 .CNNImg {
-  width: 300px;
-  height:300px;
+  width: 400px;
+  height:400px;
+}
+
+.drawdroidImg {
+    width:300px;
+    height:400px;
 }
 
 .CNNCaption {
@@ -294,6 +299,11 @@ nav {
     height:300px;
   }
 
+  .drawdroidImg {
+      width:200px;
+      height:300px;
+  }
+
   .CNNCaption {
     width:50%;
     height:150px;
@@ -317,6 +327,11 @@ nav {
 }
 
 @media screen and (max-width:1300px) {
+    .projectDescription {
+        color:white;
+        font-size:12px;
+    }
+
   .cvpdf {
     width:500px;
     height:300px;
@@ -334,6 +349,11 @@ nav {
   .CNNImg {
     width: 300px;
     height:300px;
+  }
+
+  .drawdroidImg {
+      width:200px;
+      height:300px;
   }
 
   .CNNCaption {
@@ -417,6 +437,11 @@ nav {
 }
 
 @media screen and (max-width:1200px) {
+    .projectDescription {
+        color:white;
+        font-size:10px;
+    }
+
   h4 {
     vertical-align: middle;
     text-align: left;
@@ -521,9 +546,18 @@ nav {
     width:150px;
     height:auto;
   }
+
+  .projectDescription {
+    color:white;
+    font-size:5px;
+  }
 }
 
 @media screen and (max-width:950px) {
+  .projectTitle {
+    font-size:10px;
+  }
+
   .cvpdf {
     width:300px;
     height:100px;
@@ -581,6 +615,23 @@ nav {
   }
 }
 
+@media screen and (max-width:800px) {
+  .projectDescription {
+    color:white;
+    font-size:5px;
+  }
+
+  .CNNImg {
+    width: 50px;
+    height:50px;
+  }
+
+  .drawdroidImg {
+      width:25px;
+      height:50px;
+  }
+}
+
 @media screen and (max-width:600px) {
   h4 {
     font-size: 10px;
@@ -591,9 +642,19 @@ nav {
     height:80px;
   }
 
+  .projectDescription {
+    color:white;
+    font-size:5px;
+  }
+
   .CNNImg {
-    width: 300px;
-    height:300px;
+    width: 50px;
+    height:50px;
+  }
+
+  .drawdroidImg {
+      width:25px;
+      height:50px;
   }
 
   .CNNCaption {
@@ -762,6 +823,8 @@ nav {
 }
 
 @media screen and (max-height:600px) {
+
+
   h4 {
     font-size: 7px;
   }
@@ -769,11 +832,6 @@ nav {
   .projectWrapper {
     width: 100%;
     height:40px;
-  }
-
-  .CNNImg {
-    width: 200px;
-    height:200px;
   }
 
   .CNNCaption {
