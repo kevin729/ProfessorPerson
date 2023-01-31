@@ -439,7 +439,7 @@ nav {
 @media screen and (max-width:1200px) {
     .projectDescription {
         color:white;
-        font-size:10px;
+        font-size:7px;
     }
 
   h4 {
@@ -517,6 +517,11 @@ nav {
 }
 
 @media screen and (max-width:1100px) {
+    .projectDescription {
+      color:white;
+      font-size:8px;
+    }
+
   .cvpdf {
     width:400px;
     height:200px;
@@ -546,16 +551,11 @@ nav {
     width:150px;
     height:auto;
   }
-
-  .projectDescription {
-    color:white;
-    font-size:5px;
-  }
 }
 
 @media screen and (max-width:950px) {
   .projectTitle {
-    font-size:10px;
+    font-size:7px;
   }
 
   .cvpdf {
@@ -616,8 +616,12 @@ nav {
 }
 
 @media screen and (max-width:800px) {
-  .projectDescription {
-    color:white;
+
+      .projectDescription {
+        color:white;
+        font-size:5px;
+      }
+  .projectTitle {
     font-size:5px;
   }
 
@@ -642,10 +646,10 @@ nav {
     height:80px;
   }
 
-  .projectDescription {
-    color:white;
-    font-size:5px;
-  }
+      .projectDescription {
+        color:white;
+        font-size:3px;
+      }
 
   .CNNImg {
     width: 50px;
@@ -779,6 +783,11 @@ nav {
   }
 
   @media screen and (max-width:300px) {
+      .projectDescription {
+        color:white;
+        font-size:2px;
+      }
+
     .sectionwrappaer {
       width:500px;
       height:500px;
