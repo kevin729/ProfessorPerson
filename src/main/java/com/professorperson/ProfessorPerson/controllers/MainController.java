@@ -13,13 +13,13 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/log")
+    @GetMapping("/wiki")
     public String log() {
         return "index";
     }
 
-    @GetMapping("/log/edit")
-    public String editLog() {
+    @GetMapping("/log")
+    public String journal() {
         return "index";
     }
 
@@ -27,4 +27,6 @@ public class MainController {
     public String contact() {
         return "index";
     }
+
+
 }

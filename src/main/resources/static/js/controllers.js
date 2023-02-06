@@ -10,8 +10,8 @@ app.config( function($routeProvider, $locationProvider) {
         templateUrl : "welcome.html",
         controller : "homeController"
     })
-    .when("/log", {
-        templateUrl : "log.html",
+    .when("/wiki", {
+        templateUrl : "wiki.html",
         controller : "logController"
     })
     .when("/contact", {
@@ -27,11 +27,42 @@ app.run(function($http) {
     $http.defaults.headers.common['Content-type'] = "application/json"
 })
 
-app.controller("homeController", function($scope) {})
-app.controller("contactController", function($scope) {})
+app.factory('loginFactory', function($http) {
+    return {
+        login : function(callback) {
+            $http.post("http://localhost:8080/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+                $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
+                $(".ui-dialog-content").dialog("close")
+
+                if (callback != null) {
+                    callback()
+                }
+            })
+        }
+    }
+})
+
+app.controller("homeController", function($scope, loginFactory) {
+    $("html").css("overflow", "scroll")
+
+    $scope.login = function() {
+        loginFactory.login(null)
+    }
+})
+
+app.controller("contactController", function($scope, loginFactory) {
+    $("html").css("overflow", "scroll")
+
+    $scope.login = function() {
+        loginFactory.login(null)
+    }
+})
 
 var editLog = false
-app.controller("logController", function($scope, $http) {
+app.controller("logController", function($scope, $http, loginFactory) {
+    $scope.edit = editLog
+    $("html").css("overflow", "hidden")
+
     $http.get(ppurl+"api/logs/").then((response) => {
         $scope.logs = response.data
         if ($scope.logs != null || $scope.logs.length > 0) {
@@ -46,36 +77,18 @@ app.controller("logController", function($scope, $http) {
         $http.put(ppurl+"api/log/", $scope.log)
     }, true)
 
-    $("#logTitle").autocomplete({
-        source: function(req, res) {
-            $http.get(ppurl+"api/logtitles/").then((response) => {
-                res(response.data)
-            })
-        },
-        select: function(event, ui) {
-            const d = {"title": ui.item.label, "userId": $("#userID").val()}
-            console.log(d)
-            $http.post(ppurl+"api/logbytitle", {"title": ui.item.label, "userId": $("#userID").val()}).then((response) => {
-                $scope.log = response.data
-            })
+    $scope.$watch("edit", (n, o) => {
+        if (n === true || editLog) {
+            editLog = true
+            $("#logText").removeAttr("disabled")
+        } else {
+            $("#logText").attr("disabled", "")
         }
     })
 
-    $scope.titleClick = function() {
-        $("#logTitle").autocomplete("search", " ")
-    }
-
     $scope.login = function() {
-        $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username'/> <input type='password' placeholder='Password...' id='password'/> <input onclick='signIn()' type='button' value='Sign in'/> </div>").dialog()
-    }
-
-    $scope.signIn = function() {
-        $http.post("https://www.lukemind.com/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
-
-            $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
-            $(".ui-dialog-content").dialog("close")
+        loginFactory.login(() => {
             $scope.edit = true
-
             $http.get(ppurl+"api/logs/").then((response) => {
                 $scope.logs = response.data
                 if ($scope.logs != null || $scope.logs.length > 0) {
@@ -85,17 +98,23 @@ app.controller("logController", function($scope, $http) {
         })
     }
 
-    $scope.$watch("edit", (n, o) => {
-        if (n === true || editLog) {
-            editLog = true
-            $("#logText").removeAttr("disabled")
-        } else {
-            $("#logText").attr("disabled", "")
-        }
-    })
+    $scope.addLog = function() {
+
+    }
+
+    $scope.selectLog = function(title, userId) {
+        $http.post(ppurl+"api/logbytitle", {"title": title, "userId": userId}).then((response) => {
+            $scope.log = response.data
+        })
+    }
 })
 
 function signIn() {
-    var scope = angular.element($(".logwrapper")).scope()
-    scope.signIn()
+    var scope = angular.element($(".controller")).scope()
+    editLog = true
+    scope.login()
+}
+
+function showLoginDialog() {
+    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username'/> <input type='password' placeholder='Password...' id='password'/> <input onclick='signIn()' type='button' value='Sign in'/> </div>").dialog()
 }

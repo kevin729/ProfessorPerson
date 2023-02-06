@@ -9,10 +9,6 @@ body {
   height:100%;
 }
 
-#welcomeSection {
-    text-align: center;
-}
-
 #contactSection {
   text-align: center;
   padding: 0 20% 0 20%;
@@ -92,8 +88,7 @@ h4 {
 }
 
 .wrapper {
-  width: 100%;
-  height:80%;
+    height: calc(100% - 290px);
 }
 
 .main {
@@ -101,11 +96,12 @@ h4 {
 }
 
 .logwrapper {
+  overflow: hidden;
   height:100%;
 }
 
 #logform {
-  height:80%;
+  height:100%;
 }
 
 .formdiv {
@@ -147,15 +143,12 @@ h3 {
 
 .logtextwrapper {
   width: 100%;
-  height:60%;
+  height: 100%;
 }
 
-.logtitlewrapper {
-  height:100px;
-}
-
-#logTitle {
-  width: 300px;
+#logtitle {
+  width: 100%;
+  height:100%;
   font-size: 20px;
   font-weight: 700;
 }
@@ -198,6 +191,66 @@ h3 {
   border-radius:20%;
 }
 
+#loginputswrapper {
+    width:100%;
+    height:5%;
+}
+
+#logtitlewrapper {
+    display:inline-block;
+    width:50%;
+    height:100%;
+}
+
+#editbuttonswrapper {
+    display:inline-block;
+    width:50%;
+    height:100%;
+    float: right;
+}
+
+#addlogbutton {
+    float:right;
+    text-align:center;
+    line-height: 28px;
+    display:inline-block;
+    text-decoration:none;
+    background-color:green;
+    color:white;
+    border-style:solid;
+    border-color:white;
+    font-size: 30px;
+    font-weight: 900;
+    width:50%;
+    height:100%;
+}
+
+#addlogbutton:hover {
+    background-color:black;
+    border-radius:10%;
+}
+
+#deletelogbutton {
+    float:right;
+    text-align:center;
+    line-height: 28px;
+    display:inline-block;
+    text-decoration:none;
+    background-color:red;
+    color:white;
+    border-style:solid;
+    border-color:white;
+    font-size: 30px;
+    font-weight: 900;
+    width:50%;
+    height:100%;
+}
+
+#deletelogbutton:hover {
+    background-color:black;
+    border-radius:10%;
+}
+
 #logowrapper {
   width:100px;
   height:100px;
@@ -214,7 +267,7 @@ h3 {
   position: static;
   background-color: grey;
   width:100%;
-  height:120px;
+  height:10%;
 }
 
 nav {
@@ -227,9 +280,16 @@ nav {
 }
 
 .lefthead {
+  width:40%;
   display: flex;
-  align-items: middle;
-  width:50px;
+  align-items: center;
+
+}
+
+.righthead {
+  display: flex;
+  align-items: center;
+
 }
 
 .menuwrapper {
@@ -238,11 +298,10 @@ nav {
   margin-left:100px;
   width:200px;
   height:100px;
-  vertical-align: middle;
+
 }
 
 .menulist {
-
   float:left;
   width:100px;
 }
@@ -252,7 +311,59 @@ nav {
   z-index: 2;
   vertical-align: middle;
   margin-left:20px;
-  display: inline-block;
+}
+
+#sidebarSection {
+    display:inline-block;
+    width:20%;
+    height:100%;
+}
+
+#sidebar {
+    width:100%;
+    height:100%;
+    background-color:black;
+}
+
+#sidebarlist {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    list-style: none;
+
+}
+
+.sidebaritem {
+    padding:0;
+    display:flex;
+    align-items: center;
+    width:100%;
+    text-align:center;
+    color:white;
+    background-color:purple;
+    border-style:solid;
+    border-color:white;
+    font-size:30px;
+    font-weight:900;
+}
+
+.sidebaritem * {
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
+
+.sidebaritem:hover {
+    background-color:black;
+}
+
+#logSection {
+    display:inline-block;
+    vertical-align:top;
+    width:79.6%;
+    height:100%;
 }
 
 #canvaswrapper {
@@ -272,6 +383,7 @@ nav {
   z-index: 2;
   height:auto;
   width:100%;
+  height:77.66px;
 }
 
 .professorperson {
@@ -297,6 +409,11 @@ nav {
 }
 
 @media screen and (max-width:1550px) {
+
+  .wrapper {
+      height: calc(100% - 160px);
+  }
+
   .projectWrapper {
     width: 100%;
     height:150px;
@@ -335,6 +452,16 @@ nav {
 }
 
 @media screen and (max-width:1300px) {
+
+  .wrapper {
+      height: calc(100% - 150px);
+  }
+
+      #logSection {
+          width:79.5%;
+      }
+
+
     .projectDescription {
         color:white;
         font-size:16px;
@@ -399,16 +526,11 @@ nav {
     height:10px;
   }
 
-  .mainwrapper {
-    margin-top:50px;
-    width:100%;
-    height: 90%;
-  }
 
   .head {
     width:100%;
     height:60px;
-    background-color:grey
+    background-color:grey;
   }
 
   nav {
@@ -511,12 +633,8 @@ nav {
 
   }
 
-  .wrapper {
-    margin-top: 5px;
-  }
-
   .mainwrapper {
-    margin-top:50px;
+
     width:100%;
     height: 90%;
   }
@@ -546,10 +664,6 @@ nav {
   .foot {
     font-size: 5px;
     height:20px;
-  }
-
-  .logtitlewrapper {
-    height:70px;
   }
 
   .me {
@@ -583,20 +697,13 @@ nav {
     height:auto;
   }
 
-  .mainwrapper {
-    margin-top:20px;
-    width:100%;
-    height: 90%;
+  .wrapper {
+    height: calc(100% - 130px);
   }
 
   .foot {
     font-size: 5px;
     height:10px;
-  }
-
-  .head {
-    width:100%;
-    height:60px;
   }
 
   .banner {
@@ -611,10 +718,6 @@ nav {
     position: static;
   }
 
-  .wrapper {
-    margin-top: 50px;
-  }
-
   .menulist {
     float:left;
     width:100px;
@@ -626,6 +729,10 @@ nav {
 }
 
 @media screen and (max-width:800px) {
+
+    #logSection {
+        width:77%;
+    }
 
       .projectDescription {
         color:white;
@@ -650,6 +757,51 @@ nav {
 
   h4 {
     font-size: 10px;
+  }
+
+    .wrapper {
+        height: calc(100% - 80px);
+    }
+
+    #logSection {
+        width:78%;
+    }
+
+    #addlogbutton {
+        display:inline-block;
+        text-decoration:none;
+        background-color:green;
+        color:white;
+        border-style:solid;
+        border-color:white;
+        font-size: 12px;
+        font-weight: 900;
+        width:50%;
+        height:100%;
+    }
+
+    #deletelogbutton {
+        display:inline-block;
+        text-decoration:none;
+        background-color:red;
+        color:white;
+        border-style:solid;
+        border-color:white;
+        font-size: 12px;
+        font-weight: 900;
+        width:50%;
+        height:100%;
+    }
+
+  .sidebaritem {
+      width:100%;
+      text-align:center;
+      color:white;
+      background-color:purple;
+      border-style:solid;
+      border-color:white;
+      font-size:12px;
+      font-weight:900;
   }
 
   .projectWrapper {
@@ -710,15 +862,7 @@ nav {
     height:10px;
   }
 
-  .head {
-    width:100%;
-    height:60px;
-  }
 
-  nav {
-    height:60px;
-    position: static;
-  }
 
   .banner {
     position: absolute;
@@ -729,55 +873,53 @@ nav {
     width:auto;
   }
 
-  .wrapper {
-    margin-top: 50px;
-  }
 
-  .logo {
-    display:none;
+  .navbar {
+    padding:0;
   }
+    .container-fluid {
+        padding:0;
+    }
 
-  #logowrapper {
-    display:none;
-  }
+    .lefthead {
+      width:50%;
+      display: flex;
+      align-items: center;
+    }
+
+    .righthead {
+      width:50%;
+      display: flex;
+      align-items: center;
+    }
 
   .menuwrapper {
-    width:200px;
-    height:10px;
-    float:left;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    height: 60px;
+    vertical-align: middle;
   }
 
   .menulist {
-    position: absolute;
-    top:2px;
-    left:0;
+    display:inline-block;
+    width:100%;
     float:left;
-    width:200px;
-    height:20px;
   }
 
   .nav-item {
     display: inline-block;
-    width:30px;
-    height:20px;
   }
 
   .menu {
-    text-align: center;
-    border-radius: 0;
-    width:50px;
-    height:20px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0;
-    padding:2px;
-    font-size: 10px;
-  }
-
-  .righthead {
-    margin:0;
-    padding:0;
+    font-size:10px;
+    font-weight:800;
+    position: relative;
+    z-index: 2;
     vertical-align: middle;
+    margin-left:5px;
+    display: inline-block;
   }
 
   .me {
