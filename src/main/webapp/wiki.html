@@ -1,0 +1,36 @@
+<div class="logwrapper controller">
+    <div id="sidebarSection">
+        <div id="loginputswrapper">
+            <div id="logtitlewrapper">
+                <input id="logtitle" placeholder="New page..."/>
+            </div>
+
+            <div id="editbuttonswrapper">
+                <a id="deletelogbutton">x</a>
+                <a id="addlogbutton">+</a>
+            </div>
+        </div>
+
+
+        <nav id="sidebar">
+            <ul id="sidebarlist">
+                <li class="sidebaritem" ng-repeat="log in logs" ng-click="selectLog(log.logTitle, log.userId)">
+                    <pre>{{log.logTitle}}</pre>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="logSection">
+        <form id="logform" asp-controller="Log" method="post">
+            <div class="formdiv logtextwrapper">
+                <textarea name="text" id="logText" ng-model="log.logText" disabled></textarea>
+            </div>
+
+            <input id="userID" name="userID" type="hidden" value="1"/>
+            <input name="id" type="hidden" ng-model="log.id"/>
+            <input name="dateModified" type="hidden" value="-1"/>
+        </form>
+    </div>
+</div>
+

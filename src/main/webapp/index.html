@@ -33,26 +33,27 @@
                         <div id="logowrapper">
                             <a class="navbar-brand" href="/"><canvas id="canvas" width="2048" height="2048"></canvas></a>
                         </div>
-
                         <div class="menuwrapper">
                             <ul class="navbar-nav menulist">
                                 <li class="nav-item">
-                                    <a class="menu PPbutton" href="/log">Logs</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="menu PPbutton" href="/contact">Contact</a>
+                                    <a class="menu PPbutton" href="/wiki">Wiki</a>
                                 </li>
                             </ul>
                         </div>
 
                     </div>
 
-                    <div class="navbar d-sm-inline-flex righthead" style="float:right">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li>
-
-                            </li>
-                        </ul>
+                    <div class="righthead">
+                        <div class="menuwrapper">
+                            <ul class="navbar-nav menulist">
+                                <li class="nav-item">
+                                    <a class="menu PPbutton" href="/contact">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="menu PPbutton" onclick="showLoginDialog()">Login</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -65,7 +66,7 @@
     </div>
 
 
-        <div class="container wrapper">
+        <div class="wrapper">
             <main role="main" class="pb-3 main">
                 <div ng-view style="height:100%"></div>
             </main>
