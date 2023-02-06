@@ -22,7 +22,7 @@ app.config( function($routeProvider, $locationProvider) {
 })
 
 app.run(function($http) {
-    $http.get(lukemindurl+"api/csrf").then((response) => {
+    $http.get(ppurl+"api/csrf").then((response) => {
        $http.defaults.headers.common[response.data.headerName] = response.data.token
     })
     $http.defaults.headers.common['Content-type'] = "application/json"
@@ -31,7 +31,7 @@ app.run(function($http) {
 app.factory('loginFactory', function($http) {
     return {
         login : function(callback) {
-            $http.post(ppurl+"api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+            $http.post(lukemindurl+"api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
                 $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
                 $(".ui-dialog-content").dialog("close")
 
