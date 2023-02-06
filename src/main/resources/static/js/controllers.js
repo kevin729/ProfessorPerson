@@ -1,4 +1,5 @@
 var ppurl = "https://www.professorperson.app/"
+var lukemindurl = "https://www.lukemind.com/"
 var app = angular.module('app', [
     'ngRoute'
 ])
@@ -21,7 +22,7 @@ app.config( function($routeProvider, $locationProvider) {
 })
 
 app.run(function($http) {
-    $http.get(ppurl+"api/csrf").then((response) => {
+    $http.get(lukemindurl+"api/csrf").then((response) => {
        $http.defaults.headers.common[response.data.headerName] = response.data.token
     })
     $http.defaults.headers.common['Content-type'] = "application/json"
