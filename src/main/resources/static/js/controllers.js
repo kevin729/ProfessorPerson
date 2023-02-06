@@ -62,7 +62,7 @@ app.controller("contactController", function($scope, loginFactory) {
 var editLog = false
 app.controller("logController", function($scope, $http, loginFactory) {
     $scope.edit = editLog
-    $("html").css("overflow", "hidden")
+    //$("html").css("overflow", "hidden")
 
     $http.get(ppurl+"api/logs/").then((response) => {
         $scope.logs = response.data
