@@ -35,7 +35,7 @@ public class APIController {
             List<Log> logs = new Gson().fromJson(json, List.class);
             return logs;
         } else {
-            String json = connection.get(lukeMindUrl+"/api/get_logs/"+userId, "");
+            String json = connection.get(lukeMindUrl+"api/get_logs/"+userId, "");
             List<Log> logs = new Gson().fromJson(json, List.class);
             return logs;
         }

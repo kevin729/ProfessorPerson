@@ -114,27 +114,28 @@ app.controller("logController", function($scope, $http, loginFactory) {
         }
     })
 
+    $scope.getLogs = function() {
+        let id = userId != null ? userId : 1
+
+        $http.get(ppurl+"api/logs/"+id).then((response) => {
+            $scope.logs = response.data
+            if ($scope.logs != null || $scope.logs.length > 0) {
+                $scope.log = $scope.logs[0];
+            }
+        })
+    }
+
     $scope.login = function() {
         loginFactory.login(() => {
             $scope.edit = true
-            $http.get(ppurl+"api/logs/"+userId).then((response) => {
-                $scope.logs = response.data
-                if ($scope.logs != null || $scope.logs.length > 0) {
-                    $scope.log = $scope.logs[0];
-                }
-            })
+            $scope.getLogs()
         })
     }
 
     $scope.register = function() {
         loginFactory.register(() => {
             $scope.edit = true
-            $http.get(ppurl+"api/logs/"+userId).then((response) => {
-            $scope.logs = response.data
-                if ($scope.logs != null || $scope.logs.length > 0) {
-                    $scope.log = $scope.logs[0];
-                }
-            })
+            $scope.getLogs()
         })
     }
 
@@ -157,6 +158,8 @@ app.controller("logController", function($scope, $http, loginFactory) {
             $scope.log = response.data
         })
     }
+
+    $scope.getLogs()
 })
 
 function signIn() {
