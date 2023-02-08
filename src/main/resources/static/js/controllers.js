@@ -106,7 +106,6 @@ app.controller("logController", function($scope, $http, loginFactory) {
     }, true)
 
     $scope.$watch("edit", (n, o) => {
-        alert(n)
         if (n === true || editLog) {
             editLog = true
             $("#logText").removeAttr("disabled")
