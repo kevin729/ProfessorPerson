@@ -1,5 +1,9 @@
 var ppurl = "https://www.professorperson.app/"
 var lukemindurl = "https://www.lukemind.com/"
+
+var userId;
+var editLog = false
+
 var app = angular.module('app', [
     'ngRoute'
 ])
@@ -32,10 +36,10 @@ app.factory('loginFactory', function($http) {
     var login = function(callback) {
         $http.post("http://localhost:8080/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
-            $(".ui-dialog-content").dialog("close")
-
+            $(".ui-dialog-content").remove()
+            userId = response.data.userId
             if (callback != null) {
-                callback()
+                callback(response.data.id)
             }
         })
     }
@@ -43,8 +47,8 @@ app.factory('loginFactory', function($http) {
     var register = function(callback) {
         $http.post("http://localhost:8080/api/v1/auth/register", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
-            $(".ui-dialog-content").dialog("close")
-
+            $(".ui-dialog-content").remove()
+            userId = response.data.userId
             if (callback != null) {
                 callback()
             }
@@ -65,7 +69,7 @@ app.controller("homeController", function($scope, loginFactory) {
     }
 
     $scope.register = function() {
-        loginFactory.register()
+        loginFactory.register(null)
     }
 })
 
@@ -81,17 +85,10 @@ app.controller("contactController", function($scope, loginFactory) {
     }
 })
 
-var editLog = false
+
 app.controller("logController", function($scope, $http, loginFactory) {
     $scope.edit = editLog
     //$("html").css("overflow", "hidden")
-
-    $http.get(ppurl+"api/logs/").then((response) => {
-        $scope.logs = response.data
-        if ($scope.logs != null || $scope.logs.length > 0) {
-            $scope.log = $scope.logs[0];
-        }
-    })
 
     $scope.$watch("log", (newValue, oldValue) => {
         if (oldValue == undefined || newValue.id != oldValue.id) {
@@ -101,6 +98,7 @@ app.controller("logController", function($scope, $http, loginFactory) {
     }, true)
 
     $scope.$watch("edit", (n, o) => {
+        alert(n)
         if (n === true || editLog) {
             editLog = true
             $("#logText").removeAttr("disabled")
@@ -112,7 +110,7 @@ app.controller("logController", function($scope, $http, loginFactory) {
     $scope.login = function() {
         loginFactory.login(() => {
             $scope.edit = true
-            $http.get(ppurl+"api/logs/").then((response) => {
+            $http.get(ppurl+"api/logs/"+userId).then((response) => {
                 $scope.logs = response.data
                 if ($scope.logs != null || $scope.logs.length > 0) {
                     $scope.log = $scope.logs[0];
@@ -124,26 +122,31 @@ app.controller("logController", function($scope, $http, loginFactory) {
     $scope.register = function() {
         loginFactory.register(() => {
             $scope.edit = true
+            $http.get(ppurl+"api/logs/"+userId).then((response) => {
+            $scope.logs = response.data
+                if ($scope.logs != null || $scope.logs.length > 0) {
+                    $scope.log = $scope.logs[0];
+                }
+            })
         })
     }
 
     $scope.addLog = function() {
-        $http.post(ppurl+"api/log", {"logTitle": $scope.newLogTitle, "userId": 1}).then((response) => {
+        $http.post(ppurl+"api/log/"+userId, {"logTitle": $scope.newLogTitle, "userId": userId}).then((response) => {
             $scope.log = response.data
             $scope.logs.push($scope.log)
         })
     }
 
     $scope.deleteLog = function() {
-        alert($scope.log.logTitle)
-        $http.delete(ppurl+"api/log/"+$scope.log.id+"/"+1).then((response) => {
+        $http.delete(ppurl+"api/log/"+$scope.log.id+"/"+userId).then((response) => {
             $scope.logs = response.data
             $scope.log = $scope.logs[$scope.logs.length - 1]
         })
     }
 
-    $scope.selectLog = function(title, userId) {
-        $http.post(ppurl+"api/logbytitle", {"title": title, "userId": userId}).then((response) => {
+    $scope.selectLog = function(title) {
+        $http.post(ppurl+"api/logbytitle/"+userId, {"title": title, "userId": userId}).then((response) => {
             $scope.log = response.data
         })
     }

@@ -19,7 +19,7 @@
 
         <nav id="sidebar">
             <ul id="sidebarlist">
-                <li class="sidebaritem" ng-repeat="log in logs | orderBy: '-dateModified'" ng-click="selectLog(log.logTitle, log.userId)">
+                <li class="sidebaritem" ng-repeat="log in logs | orderBy: '-dateModified'" ng-click="selectLog(log.logTitle)">
                     <pre>{{log.logTitle}}</pre>
                 </li>
             </ul>
