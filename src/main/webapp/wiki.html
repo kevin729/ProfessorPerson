@@ -2,25 +2,24 @@
     <div id="sidebarSection">
         <div id="loginputswrapper">
             <div id="logtitlewrapper">
-                <input id="logtitle" placeholder="New page..."/>
+                <input id="logtitle" placeholder="New page..." ng-model="newLogTitle"/>
             </div>
 
             <div id="editbuttonswrapper">
-                <div id="deletelogbutton">
-                    <a>x</a>
-                </div>
+                    <a id="deletelogbutton" ng-click="deleteLog()">
+                        <div>x</div>
+                    </a>
 
-                <div id="addlogbutton">
-                    <a>+</a>
-                </div>
-
+                    <a id="addlogbutton" ng-click="addLog()">
+                        <div>+</div>
+                    </a>
             </div>
         </div>
 
 
         <nav id="sidebar">
             <ul id="sidebarlist">
-                <li class="sidebaritem" ng-repeat="log in logs" ng-click="selectLog(log.logTitle, log.userId)">
+                <li class="sidebaritem" ng-repeat="log in logs | orderBy: '-dateModified'" ng-click="selectLog(log.logTitle, log.userId)">
                     <pre>{{log.logTitle}}</pre>
                 </li>
             </ul>
