@@ -28,15 +28,34 @@ app.run(function($http) {
 })
 
 app.factory('loginFactory', function($http) {
+    var login = function(callback) {
+        $http.post("http://localhost:8080/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
+            $(".ui-dialog-content").dialog("close")
+
+            if (callback != null) {
+                callback()
+            }
+        })
+    }
+
+    var register = function(callback) {
+        $http.post("http://localhost:8080/api/v1/auth/register", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+            $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
+            $(".ui-dialog-content").dialog("close")
+        })
+    }
+
     return {
-        login : function(callback) {
-            $http.post("http://localhost:8080/api/v1/auth/authenticate", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+        login,
+        register
+    }
+
+    return {
+        register : function() {
+            $http.post("http://localhost:8080/api/v1/auth/register", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
                 $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
                 $(".ui-dialog-content").dialog("close")
-
-                if (callback != null) {
-                    callback()
-                }
             })
         }
     }
@@ -48,6 +67,10 @@ app.controller("homeController", function($scope, loginFactory) {
     $scope.login = function() {
         loginFactory.login(null)
     }
+
+    $scope.register = function() {
+        loginFactory.register()
+    }
 })
 
 app.controller("contactController", function($scope, loginFactory) {
@@ -55,6 +78,10 @@ app.controller("contactController", function($scope, loginFactory) {
 
     $scope.login = function() {
         loginFactory.login(null)
+    }
+
+    $scope.register = function() {
+        loginFactory.register()
     }
 })
 
@@ -98,8 +125,23 @@ app.controller("logController", function($scope, $http, loginFactory) {
         })
     }
 
-    $scope.addLog = function() {
+    $scope.register = function() {
+        loginFactory.register()
+    }
 
+    $scope.addLog = function() {
+        $http.post(ppurl+"api/log", {"logTitle": $scope.newLogTitle, "userId": 1}).then((response) => {
+            $scope.log = response.data
+            $scope.logs.push($scope.log)
+        })
+    }
+
+    $scope.deleteLog = function() {
+        alert($scope.log.logTitle)
+        $http.delete(ppurl+"api/log/"+$scope.log.id+"/"+1).then((response) => {
+            $scope.logs = response.data
+            $scope.log = $scope.logs[$scope.logs.length - 1]
+        })
     }
 
     $scope.selectLog = function(title, userId) {
@@ -115,6 +157,12 @@ function signIn() {
     scope.login()
 }
 
+function register() {
+    var scope = angular.element($(".controller")).scope()
+    editLog = true
+    scope.register()
+}
+
 function showLoginDialog() {
-    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username'/> <input type='password' placeholder='Password...' id='password'/> <input onclick='signIn()' type='button' value='Sign in'/> </div>").dialog()
+    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username'/> <input type='password' placeholder='Password...' id='password'/> <input onclick='signIn()' type='button' value='Sign in'/> <input onclick='register()' type='button' value='Register'/> </div>").dialog()
 }

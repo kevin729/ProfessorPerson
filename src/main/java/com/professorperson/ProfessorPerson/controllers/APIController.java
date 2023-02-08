@@ -69,14 +69,31 @@ public class APIController {
         }
     }
 
+    @PostMapping("/api/log")
+    public Log postLog(@RequestBody Log log, HttpServletRequest request) {
+        Optional<String> token = extractToken(request);
+        String responseJson = connection.post("http://localhost:8080/profile/create_log/1", new Gson().toJson(log), token.get());
+        System.out.println(responseJson);
+        Log response = new Gson().fromJson(responseJson, Log.class);
+        return response;
+    }
+
     @PutMapping("/api/log")
-    public void postLog(@RequestBody Log log, HttpServletRequest request) {
+    public void putLog(@RequestBody Log log, HttpServletRequest request) {
         Optional<String> token = extractToken(request);
 
         if (token.isPresent()) {
             String logRequest = new Gson().toJson(log);
             connection.put("http://localhost:8080/profile/modify_log", logRequest, token.get());
         }
+    }
+
+    @DeleteMapping("/api/log/{id}/{userId}")
+    public List<Log> deleteLog(@PathVariable int id, @PathVariable int userId, HttpServletRequest request) {
+        Optional<String> token = extractToken(request);
+        String responseJson = connection.delete("http://localhost:8080/profile/delete_log/"+id+"/"+userId, null, token.get());
+        List<Log> logs = new Gson().fromJson(responseJson, List.class);
+        return logs;
     }
 
     @GetMapping("/api/csrf")
