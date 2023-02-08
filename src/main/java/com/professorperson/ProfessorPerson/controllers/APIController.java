@@ -21,6 +21,8 @@ import java.util.Optional;
 @RestController
 public class APIController {
 
+    String lukeMindUrl = "https://www.lukemind.com/";
+
     @Autowired
     private RestConnection connection;
 
@@ -29,11 +31,11 @@ public class APIController {
         Optional<String> token = extractToken(request);
 
         if (token.isPresent()) {
-            String json = connection.get("http://localhost:8080/profile/get_logs/"+userId, token.get());
+            String json = connection.get(lukeMindUrl+"profile/get_logs/"+userId, token.get());
             List<Log> logs = new Gson().fromJson(json, List.class);
             return logs;
         } else {
-            String json = connection.get("http://localhost:8080/api/get_logs/"+userId, "");
+            String json = connection.get(lukeMindUrl+"/api/get_logs/"+userId, "");
             List<Log> logs = new Gson().fromJson(json, List.class);
             return logs;
         }
@@ -44,11 +46,11 @@ public class APIController {
         Optional<String> token = extractToken(request);
 
         if (token.isPresent()) {
-            String json = connection.get("http://localhost:8080/profile/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/"+userId, token.get());
+            String json = connection.get(lukeMindUrl+"profile/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/"+userId, token.get());
             Log log = new Gson().fromJson(json, Log.class);
             return log;
         } else {
-            String json = connection.get("http://localhost:8080/api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/"+userId, "");
+            String json = connection.get(lukeMindUrl+"api/get_log_by_Title/"+ UriUtils.encode(data.getTitle(), "UTF-8")+"/"+userId, "");
             Log log = new Gson().fromJson(json, Log.class);
             return log;
         }
@@ -57,7 +59,7 @@ public class APIController {
     @PostMapping("/api/log/{userId}")
     public Log postLog(@RequestBody Log log, @PathVariable int userId, HttpServletRequest request) {
         Optional<String> token = extractToken(request);
-        String responseJson = connection.post("http://localhost:8080/profile/create_log/"+userId, new Gson().toJson(log), token.get());
+        String responseJson = connection.post(lukeMindUrl+"profile/create_log/"+userId, new Gson().toJson(log), token.get());
         System.out.println(responseJson);
         Log response = new Gson().fromJson(responseJson, Log.class);
         return response;
@@ -69,14 +71,15 @@ public class APIController {
 
         if (token.isPresent()) {
             String logRequest = new Gson().toJson(log);
-            connection.put("https://www.lukemind.com/profile/modify_log", logRequest, token.get());
+
+            connection.put(lukeMindUrl+"profile/modify_log", logRequest, token.get());
         }
     }
 
     @DeleteMapping("/api/log/{id}/{userId}")
     public List<Log> deleteLog(@PathVariable int id, @PathVariable int userId, HttpServletRequest request) {
         Optional<String> token = extractToken(request);
-        String responseJson = connection.delete("http://localhost:8080/profile/delete_log/"+id+"/"+userId, null, token.get());
+        String responseJson = connection.delete(lukeMindUrl+"profile/delete_log/"+id+"/"+userId, null, token.get());
         List<Log> logs = new Gson().fromJson(responseJson, List.class);
         return logs;
     }
