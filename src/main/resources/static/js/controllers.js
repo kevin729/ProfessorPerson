@@ -46,7 +46,7 @@ app.factory('loginFactory', function($http) {
     }
 
     var register = function(callback) {
-        $http.post("http://localhost:8080/api/v1/auth/register", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
+        $http.post(lukemindurl+"api/v1/auth/register", {"username":$("#username").val(), "password":$("#password").val()}).then((response) => {
             $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.token
             $(".ui-dialog-content").remove()
             userId = response.data.userId
@@ -57,7 +57,7 @@ app.factory('loginFactory', function($http) {
     }
 
     var logout = function(callback) {
-        $http.post("http://localhost:8080/api/v1/auth/logout", $http.defaults.headers.common.Authorization.substring(7)).then((response) => {
+        $http.post(lukemindurl+"api/v1/auth/logout", $http.defaults.headers.common.Authorization.substring(7)).then((response) => {
             delete $http.defaults.headers.common["Authorization"]
             $(".ui-dialog-content").remove()
             userId = response.data.userId
