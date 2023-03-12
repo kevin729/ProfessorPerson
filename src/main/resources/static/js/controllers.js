@@ -1,5 +1,5 @@
-var ppurl = "https://www.professorperson.app/"
-var lukemindurl = "https://www.lukemind.com/"
+var ppurl = "http://localhost:8081/"
+var lukemindurl = "http://localhost:8080/"
 
 var userId;
 var editLog = false
@@ -7,6 +7,7 @@ var editLog = false
 var app = angular.module('app', [
     'ngRoute'
 ])
+var loginApp = angular.module('loginApp', [])
 
 app.config( function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true)
@@ -55,55 +56,86 @@ app.factory('loginFactory', function($http) {
         })
     }
 
+    var logout = function(callback) {
+        $http.post("http://localhost:8080/api/v1/auth/logout", $http.defaults.headers.common.Authorization.substring(7)).then((response) => {
+            delete $http.defaults.headers.common["Authorization"]
+            $(".ui-dialog-content").remove()
+            userId = response.data.userId
+            if (callback != null) {
+                callback()
+            }
+        })
+    }
+
     return {
         login,
-        register
+        register,
+        logout
     }
 })
 
-app.controller("homeController", function($scope, loginFactory) {
-    $("html").css("overflow", "scroll")
-
-    $scope.login = function() {
-        loginFactory.login(null)
-    }
-
-    $scope.register = function() {
-        loginFactory.register(null)
-    }
-})
-
-app.controller("contactController", function($scope, loginFactory) {
-    $("html").css("overflow", "scroll")
-
-    $scope.login = function() {
-        loginFactory.login(null)
-    }
-
-    $scope.register = function() {
-        loginFactory.register(null)
-    }
-})
-
-
-app.controller("logController", function($scope, $http, loginFactory) {
+app.controller("loginController", function($scope, loginFactory) {
     $scope.edit = editLog
-    //$("html").css("overflow", "hidden")
+
+    $scope.login = function() {
+        loginFactory.login(() => {
+            $scope.edit = true
+        })
+    }
+
+    $scope.register = function() {
+        loginFactory.register(() => {
+            $scope.edit = true;
+        })
+    }
+
+    $scope.logout = function() {
+        loginFactory.logout(() => {
+            $scope.edit = false
+        })
+    }
+
+    $scope.$watch("edit", (n, o) => {
+        let logScope = angular.element($(".controller")).scope()
+        if (logScope == null) {
+            return
+        }
+
+        if (n === true) {
+            logScope.edit = true
+        } else {
+            logScope.edit = false
+        }
+    })
+})
+
+app.controller("homeController", function($scope) {
+
+})
+
+app.controller("contactController", function($scope) {
+
+})
+
+
+app.controller("logController", function($scope, $http) {
+    let loginScope = angular.element("#loginController").scope()
+    $scope.edit = loginScope.edit
 
     $scope.$watch("log", (newValue, oldValue) => {
-        if (oldValue == undefined || newValue.id != oldValue.id) {
+        if (newValue === undefined) {
             return
         }
         $http.put(ppurl+"api/log/", $scope.log)
     }, true)
 
     $scope.$watch("edit", (n, o) => {
-        if (n === true || editLog) {
-            editLog = true
+        if (n === true) {
             $("#logText").removeAttr("disabled")
         } else {
             $("#logText").attr("disabled", "")
         }
+        $scope.getLogs()
     })
 
     $scope.getLogs = function() {
@@ -114,20 +146,6 @@ app.controller("logController", function($scope, $http, loginFactory) {
             if ($scope.logs != null || $scope.logs.length > 0) {
                 $scope.log = $scope.logs[0];
             }
-        })
-    }
-
-    $scope.login = function() {
-        loginFactory.login(() => {
-            $scope.edit = true
-            $scope.getLogs()
-        })
-    }
-
-    $scope.register = function() {
-        loginFactory.register(() => {
-            $scope.edit = true
-            $scope.getLogs()
         })
     }
 
@@ -150,22 +168,32 @@ app.controller("logController", function($scope, $http, loginFactory) {
             $scope.log = response.data
         })
     }
-
-    $scope.getLogs()
 })
 
 function signIn() {
-    var scope = angular.element($(".controller")).scope()
+    var scope = angular.element($("#loginController")).scope()
     editLog = true
     scope.login()
 }
 
 function register() {
-    var scope = angular.element($(".controller")).scope()
+    var scope = angular.element($("#loginController")).scope()
     editLog = true
     scope.register()
 }
 
+function showPassword() {
+    $("#showPasswordWrapper").empty()
+    $("#showPasswordWrapper").append($("<ion-icon id='showPasswordBtn' name='eye-outline' onclick='hidePassword()' tabindex='3'>"))
+    $("#password").attr("type", "text")
+}
+
+function hidePassword() {
+    $("#showPasswordWrapper").empty()
+    $("#showPasswordWrapper").append($("<ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'>"))
+    $("#password").attr("type", "password")
+}
+
 function showLoginDialog() {
-    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username'/> <input type='password' placeholder='Password...' id='password'/> <input onclick='signIn()' type='button' value='Sign in'/> <input onclick='register()' type='button' value='Register'/> </div>").dialog()
+    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username' tabindex='1'/> <input type='password' placeholder='Password...' id='password' tabindex='2'/> <div id='showPasswordWrapper'><ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'></ion-icon></div> <input onclick='signIn()' type='button' value='Sign in' tabindex='4'/> <input onclick='register()' type='button' value='Register' tabindex='5'/> </div>").dialog()
 }

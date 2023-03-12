@@ -21,7 +21,7 @@ import java.util.Optional;
 @RestController
 public class APIController {
 
-    String lukeMindUrl = "https://www.lukemind.com/";
+    String lukeMindUrl = "http://localhost:8080/";
 
     @Autowired
     private RestConnection connection;
@@ -91,6 +91,7 @@ public class APIController {
     }
 
     private Optional<String> extractToken(HttpServletRequest request) {
+
         return Optional.ofNullable(request.getHeader("Authorization"));
     }
 }
