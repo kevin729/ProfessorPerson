@@ -21,7 +21,7 @@ import java.util.Optional;
 @RestController
 public class APIController {
 
-    String lukeMindUrl = "http://localhost:8080/";
+    String lukeMindUrl = "https://www.lukemind.com/";
 
     @Autowired
     private RestConnection connection;

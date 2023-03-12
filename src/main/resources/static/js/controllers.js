@@ -1,5 +1,5 @@
-var ppurl = "http://localhost:8081/"
-var lukemindurl = "http://localhost:8080/"
+var ppurl = "https://www.professorperson.app/"
+var lukemindurl = "https://www.lukemind.com/"
 
 var userId;
 var editLog = false
