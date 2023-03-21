@@ -195,5 +195,12 @@ function hidePassword() {
 }
 
 function showLoginDialog() {
-    $("<div><p>Enter your credentials</p> <input placeholder='Username...' id='username' tabindex='1'/> <input type='password' placeholder='Password...' id='password' tabindex='2'/> <div id='showPasswordWrapper'><ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'></ion-icon></div> <input onclick='signIn()' type='button' value='Sign in' tabindex='4'/> <input onclick='register()' type='button' value='Register' tabindex='5'/> </div>").dialog()
+    $("<div onkeydown='onEnter()'><p>Enter your credentials</p> <input placeholder='Username...' id='username' tabindex='1'/> <input type='password' placeholder='Password...' id='password' tabindex='2'/> <div id='showPasswordWrapper'><ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'></ion-icon></div> <input onclick='signIn()' type='button' value='Sign in' tabindex='4'/> <input onclick='register()' type='button' value='Register' tabindex='5'/> </div>").dialog()
+}
+
+function onEnter() {
+    //if enter pressed
+    if (event.keyCode == 13) {
+        signIn()
+    }
 }
