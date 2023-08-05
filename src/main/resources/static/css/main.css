@@ -45,7 +45,6 @@ h1 {
 .me {
   width:200px;
   height:auto;
-  border-radius: 50%;
 }
 
 h4 {
@@ -146,6 +145,7 @@ h3 {
 }
 
 .logtextwrapper {
+  background-color: grey;
   width: 100%;
   height: 100%;
 }
@@ -180,6 +180,9 @@ h3 {
   height:100%;
   font-size: 20px;
   font-weight: 700;
+  background-color:#3b3b3b;
+  color:white;
+
 }
 
 .savelogwrapper {
@@ -852,7 +855,9 @@ nav {
     height:10px;
   }
 
-
+  .cvpdf {
+    display: none;
+  }
 
   .banner {
     position: absolute;
