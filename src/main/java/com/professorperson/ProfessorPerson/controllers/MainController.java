@@ -13,12 +13,12 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/wiki")
+    @GetMapping("/blackboard")
     public String log() {
         return "index";
     }
 
-    @GetMapping("/log")
+    @GetMapping("/journal")
     public String journal() {
         return "index";
     }
