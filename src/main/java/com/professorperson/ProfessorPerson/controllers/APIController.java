@@ -14,9 +14,9 @@ import org.springframework.web.util.UriUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 public class APIController {
@@ -27,16 +27,20 @@ public class APIController {
     private RestConnection connection;
 
     @GetMapping("/api/logs/{userId}")
-    public List<Log> logs(@PathVariable int userId, HttpServletRequest request) {
+    public LinkedList<Log> logs(@PathVariable int userId, HttpServletRequest request) {
         Optional<String> token = extractToken(request);
 
         if (token.isPresent()) {
             String json = connection.get(lukeMindUrl+"profile/get_logs/"+userId, token.get());
-            List<Log> logs = new Gson().fromJson(json, List.class);
+            List<Log> _logs = new Gson().fromJson(json, List.class);
+            LinkedList<Log> logs = new LinkedList<>();
+            logs.addAll(_logs);
             return logs;
         } else {
             String json = connection.get(lukeMindUrl+"api/get_logs/"+userId, "");
-            List<Log> logs = new Gson().fromJson(json, List.class);
+            List<Log> _logs = new Gson().fromJson(json, List.class);
+            LinkedList<Log> logs = new LinkedList<>();
+            logs.addAll(_logs);
             return logs;
         }
     }
