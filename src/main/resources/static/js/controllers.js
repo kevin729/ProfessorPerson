@@ -16,10 +16,14 @@ app.config( function($routeProvider, $locationProvider) {
         templateUrl : "welcome.html",
         controller : "homeController"
     })
-    .when("/wiki", {
+    .when("/blackboard", {
         templateUrl : "wiki.html",
         controller : "logController"
     })
+    .when("/journal", {
+             templateUrl : "journal.html",
+             controller : "journalController"
+         })
     .when("/contact", {
         templateUrl : "contact.html",
         controller : "contactController"
@@ -113,6 +117,10 @@ app.controller("homeController", function($scope) {
 
 })
 
+app.controller("journalController", function($scope) {
+
+})
+
 app.controller("contactController", function($scope) {
 
 })
@@ -144,6 +152,10 @@ app.controller("logController", function($scope, $http) {
         $http.get(ppurl+"api/logs/"+id).then((response) => {
             $scope.logs = response.data
             if ($scope.logs != null || $scope.logs.length > 0) {
+                $scope.logs = $scope.logs.sort(function(a,b){
+                  console.log(Date(a.dateModified))
+                  return new Date(b.dateModified) - new Date(a.dateModified);
+                });
                 $scope.log = $scope.logs[0];
             }
         })
@@ -166,6 +178,13 @@ app.controller("logController", function($scope, $http) {
     $scope.selectLog = function(title) {
         $http.post(ppurl+"api/logbytitle/"+userId, {"title": title, "userId": userId}).then((response) => {
             $scope.log = response.data
+            for (var i = 0; i < $scope.logs.length; i++) {
+                let log = $scope.logs[i]
+                if (log.id == $scope.log.id) {
+                    $scope.logs.splice(i, 1);
+                }
+            }
+            $scope.logs.unshift($scope.log)
         })
     }
 })
