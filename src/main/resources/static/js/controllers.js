@@ -100,16 +100,12 @@ app.controller("loginController", function($scope, loginFactory) {
     }
 
     $scope.$watch("edit", (n, o) => {
-        let logScope = angular.element($(".controller")).scope()
+        let logScope = angular.element($("#logController")).scope()
         if (logScope == null) {
             return
         }
 
-        if (n === true) {
-            logScope.edit = true
-        } else {
-            logScope.edit = false
-        }
+        logScope.edit = n
     })
 })
 
