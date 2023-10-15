@@ -6,21 +6,27 @@
             </div>
 
             <div id="editbuttonswrapper">
-                    <a id="deletelogbutton" ng-click="deleteLog()">
-                        <div>x</div>
-                    </a>
+                <a id="deletelogbutton" ng-click="deleteLog()">
+                    <div>x</div>
+                </a>
 
-                    <a id="addlogbutton" ng-click="addLog()">
-                        <div>+</div>
-                    </a>
+                <a id="addlogbutton" ng-click="addLog()">
+                    <div>+</div>
+                </a>
             </div>
         </div>
 
 
         <nav id="sidebar">
             <ul id="sidebarlist">
-                <li class="sidebaritem" ng-repeat="log in logs | orderBy: '-dateModified'" ng-click="selectLog(log.logTitle)">
-                    <pre>{{log.logTitle}}</pre>
+                <li class="sidebaritem" ng-repeat="log in logs | orderBy: '-dateModified'">
+                    <div ng-click="selectLog(log.logTitle)" style="width:70%; display:inline-block;">
+                        <pre>{{log.logTitle}}</pre>
+                    </div>
+                    <div class="visibilityWrapper" style="width:30%; height:100%; display:block; z-index:50; position: relative;">
+                        <ion-icon ng-if="log.visible" style="width:20px; height:30px; display: block; margin-left: auto; margin-right: auto; width: 40%;" name='eye-outline' color='secondary' ng-click="setVisibility(log)"/>
+                        <ion-icon ng-if="!log.visible" style="width:20px; height:30px; display: block; margin-left: auto; margin-right: auto; width: 40%;" name='eye-off-outline' color='secondary' ng-click="setVisibility(log)"/>
+                    </div>
                 </li>
             </ul>
         </nav>
