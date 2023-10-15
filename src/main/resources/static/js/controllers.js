@@ -175,6 +175,11 @@ app.controller("logController", function($scope, $http) {
         })
     }
 
+    $scope.setVisibility = function(log) {
+        log.visible = !log.visible
+        $http.put(ppurl+"api/log/", log)
+    }
+
     $scope.selectLog = function(title) {
         $http.post(ppurl+"api/logbytitle/"+userId, {"title": title, "userId": userId}).then((response) => {
             $scope.log = response.data
@@ -214,7 +219,8 @@ function hidePassword() {
 }
 
 function showLoginDialog() {
-    $("<div onkeydown='onEnter()'><p>Enter your credentials</p> <input placeholder='Username...' id='username' tabindex='1'/> <input type='password' placeholder='Password...' id='password' tabindex='2'/> <div id='showPasswordWrapper'><ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'></ion-icon></div> <input onclick='signIn()' type='button' value='Sign in' tabindex='4'/> <input onclick='register()' type='button' value='Register' tabindex='5'/> </div>").dialog()
+    $("#loginWrapper").remove()
+    $("<div onkeydown='onEnter()'><p>Enter your credentials</p> <input placeholder='Username...' id='username' tabindex='1'/> <input type='password' placeholder='Password...' id='password' tabindex='2'/> <div id='showPasswordWrapper'><ion-icon id='showPasswordBtn' name='eye-off-outline' onclick='showPassword()' tabindex='3'></ion-icon></div> <input onclick='signIn()' type='button' value='Sign in' tabindex='4'/> <input onclick='register()' type='button' value='Register' tabindex='5'/> </div>").dialog().attr("id", "loginWrapper")
 }
 
 function onEnter() {
